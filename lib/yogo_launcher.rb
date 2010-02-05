@@ -10,4 +10,5 @@ begin
   require File.join(YogoLauncher::YOGO_LAUNCHER_HOME,'vendor','gems','environment')
 rescue LoadError
   puts "Please run 'gem bundle' to install the required gem libraries."
+  exit 1
 end
