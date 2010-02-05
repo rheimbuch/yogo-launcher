@@ -81,8 +81,19 @@ module Yogo
     desc "db_config", "Setup the yogo database configuration"
     def db_config
       inside path do
-        create_file "config/database.yml" do
-          <<-CONFIG
+        create_file "config/database.yml", FILES['database.yml']
+      end
+    end
+    
+    desc "db_seed", "Seed the yogo database with initial data"
+    def db_seed
+      inside path do
+        run "rake db:seed NO_PERSEVERE=true RAILS_ENV=#{options[:environment]}"
+      end
+    end
+  end
+FILES = {}
+FILES['database.yml'] = <<-DATABASE
 # Yogo Data Management Toolkit
 # Copyright (c) 2010 Montana State University
 #
@@ -129,16 +140,5 @@ yogo_test:
   adapter: persevere
   host: localhost
   port: 8080
-          CONFIG
-        end
-      end
-    end
-    
-    desc "db_seed", "Seed the yogo database with initial data"
-    def db_seed
-      inside path do
-        run "rake db:seed NO_PERSEVERE=true RAILS_ENV=#{options[:environment]}"
-      end
-    end
-  end
+DATABASE
 end
