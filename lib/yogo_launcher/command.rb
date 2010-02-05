@@ -3,9 +3,7 @@ module YogoLauncher
     class Command < Thor
       include Thor::Actions
       argument :path, :optional => true, :default => '.'
-      
-      source_paths << File.join(YOGO_LAUNCHER_HOME, 'resource')
-      
+            
       desc "start", "Start the yogo installation at PATH"
       def start
         require 'jettr'
@@ -46,5 +44,17 @@ module YogoLauncher
         directory 'yogo_app', File.join(path,'yogo')
         copy_file 'yogo_jettr.yaml', File.join(path,'yogo','jettr.yaml')
       end
+      
+FILES = {}
+FILES['yogo_jettr.yml'] = <<-JETTR
+server:
+  port: 3000
+apps:
+  - type: rails
+    app_path: '.'
+    app_uri: '/'
+    rails:
+      environment: 'production'
+JETTR
     end
 end
