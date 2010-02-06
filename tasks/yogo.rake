@@ -1,11 +1,25 @@
-desc "Configure and build the yogo rails app"
-task :yogo_app => 'yogo:setup'
+require 'rake/packagetask'
+
 namespace :yogo do    
-  file "resource/yogo_app" do |t|
-    sh "thor yogo:build:complete #{t.name} -t package"
+  file "yogo" do
+    sh "thor yogo:install:create"
   end
   
-  CLEAN.include "resource/yogo_app"
+  file "persvr" do
+    sh "thor yogo:install:create"
+  end
   
-  task :setup => "resource/yogo_app"
+  CLEAN.include ["yogo","persvr"]
+  
+  task :local_install => ['yogo','persvr']
+  task :package => :local_install
+  
+  Rake::PackageTask.new("yogo-dist", :noversion) do |p|
+    p.need_zip = true
+    p.need_tar_gz = true
+    p.package_files.include "bin/*", "lib/**/*", "tasks/*.thor", "templates/*", "vendor/**/*", "yogo/**/*", "persvr/**/*"
+    p.package_files.exclude "vendor/gems/**/cache/*.gem"
+  end
+  
+  
 end
