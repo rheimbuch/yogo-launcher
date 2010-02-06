@@ -1,3 +1,7 @@
 .DS_Store
-vendor/*
-resource/yogo_app
+vendor/bin/*
+vendor/gems/*
+!vendor/gems/**/cache/*.gem
+yogo/*
+persvr/*
+pkg/*
