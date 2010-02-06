@@ -5,7 +5,8 @@ This is the base for packaging Yogo as a distributable end-user app.
 
 To get started:
 
-1. `gem install thor bundler`
+1. `gem install thor`
+2. `gem install bundler -v='0.8.1'`
 2. `gem bundle`
 3. `rake`
 

@@ -70,7 +70,8 @@ module Yogo
     desc "gems", "Configure and bundle required gems"
     def gems
       inside path do
-        run "gem install bundler rake"
+        run "gem install bundler -v='0.8.1'"
+        run "gem install rake"
         run "gem bundle"
         if(options[:type] == "package")
           rm_rf Dir['vendor/bundled/**/cache/*.gem'] # Clear out cached gems before packaging
