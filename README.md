@@ -26,6 +26,18 @@ To run yogo:
 
 Now browse to: http://localhost:3000
 
+Packaging
+--------------
+
+    rake yogo:local_install
+    rake yogo:package
+
+That's it. You'll find the packaged archives in `pkg/`.
+After you uncompress the package:
+
+    $ cd yogo-dist
+    $ bin/yogo.sh start
+
 Other stuff
 --------------
 
