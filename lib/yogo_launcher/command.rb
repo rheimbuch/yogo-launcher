@@ -38,13 +38,13 @@ module YogoLauncher
           
           yogo = Yogo::Build.new(['yogo'], :type => 'package')
           yogo.invoke(:complete)
-          create_file 'yogo/jettr.yml', FILES['yogo_jettr.yml']
+          create_file 'yogo/jettr.yaml', FILES['yogo_jettr.yaml']
         end
         
       end
       
 FILES = {}
-FILES['yogo_jettr.yml'] = <<-JETTR
+FILES['yogo_jettr.yaml'] = <<-JETTR
 server:
   port: 3000
 apps:
