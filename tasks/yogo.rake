@@ -12,7 +12,7 @@ namespace :yogo do
   CLEAN.include ["yogo","persvr"]
   
   task :local_install => ['yogo','persvr']
-  task :package => :local_install
+  
   
   Rake::PackageTask.new("yogo-dist", :noversion) do |p|
     p.need_zip = true
